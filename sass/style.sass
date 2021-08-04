@@ -1,0 +1,332 @@
+@import "variables"
+@import "mixins"
+
+// ----------------------------------------
+//  ベース
+// ----------------------------------------
+html
+    // rem用の定義
+    // 無くても挙動は変わらない
+    // Chromeで開くと16px
+    font-size: 100%
+
+body
+    // 基本の文字色
+    color: $main-color
+    // 基本の文字サイズ
+    font-size: 1rem
+    // 基本のフォント名
+    font-family: 'Noto Sans', 'Noto Sans JP', sans-serif
+
+a
+    // リンクの基本の文字色
+    color: $main-color
+    // リンクのアンダーラインを消去
+    text-decoration: none
+
+img
+    // TODO
+    max-width: 100%
+
+li
+    // リストの点を消去
+    list-style: none
+
+// コンテンツ幅を設定するための共通クラス
+.wrapper
+    max-width: 1200px
+    // margin左右をautoにして可変長にする
+    margin: 0 auto
+    padding: 0 16px
+
+.readmore
+    // 14px
+    font-size: 0.875rem
+    text-align: center
+
+    // 疑似要素で下線を設定するために、「position: relative」を設定
+    a
+        padding-bottom: 1px
+        color: $main-color
+        position: relative
+
+        // 「position: absolute」を設定し、left、bottomで下線の位置を調整
+        // widthとheightで線の長さと高さを設定
+        // 疑似要素で線を表示させるためには、「content: ''」を設定すること
+        // 「transition: all 200ms ease」でホバー時の速度などを設定
+        &::after
+            content: ''
+            position: absolute
+            height: 1px
+            width: 100%
+            left: 0
+            bottom: 0
+            background: $main-color
+            transition: all 200ms ease
+
+            // ホバー時の下線の設定
+            // 「opacity: 0」下線を非表示
+            // 「transform: translateY(3px)」下に3px移動
+            // →下に3px移動しながら下線を非表示にする
+        &:hover::after
+            opacity: 0
+            transform: translateY(3px)
+
+// ----------------------------------------
+// header
+// ----------------------------------------
+// 「position: fixed」でヘッダーを固定し、「z-index: 10」で前面に表示
+// ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+// 設定している場合は、z-indexの数値が大きい方が前面に表示される
+#header
+    width: 100%
+    background-color: $main-bg-color
+    // ヘッダーを固定
+    position: fixed
+    // 前面に表示
+    z-index: 10
+
+    .site-title
+        padding: 20px 16px
+        // 行間が大きいので小さくする
+        line-height: 1px
+
+        @include for-smartfone
+            padding: 20px 16px
+
+        // 「display: inline-block」でリンクを親要素の範囲に広げる
+        // ※blockを指定すると横幅いっぱいまで広がってしまうため、
+        // inline-blockを設定している
+        a
+            // 無くても変わらない
+            display: inline-block
+
+#navi
+    // 背景色を反転させる
+    background-color: $main-color
+
+    @include for-smartfone
+        // 横方向にはみ出ている要素はスクロールで表示するようにする
+        overflow-x: scroll
+
+    ul
+        // ヘッダーナビのメニューは横並び
+        display: flex
+        // メニューの要素は左寄せ
+        justify-content: flex-start
+        // ヘッダーナビの縦方向の中央に配置
+        align-items: center
+
+        li
+            // 14px
+            font-size: 0.875rem
+            padding: 10px 60px 10px 0
+
+            a
+                // 文字色に背景色を設定
+                color: $main-bg-color
+
+// ----------------------------------------
+// pickup
+// ----------------------------------------
+#pickup
+    // 要素を横並びにする
+    display: flex
+    // 要素の感覚をあけて配置
+    justify-content: space-between
+    padding-top: 150px
+    margin-bottom: 60px
+
+    @include for-smartfone
+        // 要素を縦並びにする
+        flex-direction: column
+        padding-top: 140px
+
+    article
+        // 33%よりも要素同士の間隔が丁度いい
+        width: 32%
+
+        @include for-smartfone
+            width: 100%
+            margin-bottom: 30px
+
+    .article-title
+        // 16px
+        font-size: 1rem
+        margin: 10px 0 15px 0
+
+// ----------------------------------------
+// container
+// ----------------------------------------
+#container
+    // メインコンテンツと記事一覧を横並びにする
+    display: flex
+    justify-content: space-between
+    margin-bottom: 60px
+
+    @include for-smartfone
+    // メインコンテンツと記事一覧を縦並びにする
+        flex-direction: column
+
+    // ----------------------------------------
+    // main
+    // ----------------------------------------
+    main
+        width: 65%
+
+        @include for-smartfone
+            width: 100%
+
+        article
+            margin-bottom: 80px
+
+            .article-title
+                // 24px
+                font-size: 1.5rem
+                margin: 10px 0 15px 0
+
+            ul
+                // 要素を横並びにする
+                display: flex
+                // 要素を左寄せ
+                justify-content: flex-start
+                margin-bottom: 10px
+
+                li
+                    // 14px
+                    font-size: 0.875rem
+                    margin-right: 20px
+
+            .text
+                    padding: 10px 40px 30px 40px
+
+    // ----------------------------------------
+    // aside
+    // ----------------------------------------
+    #sidebar
+        width: 33%
+        padding: 20px
+
+        @include for-smartfone
+            width: 100%
+            padding: 0
+
+        .side-title
+            // 18px
+            font-size: 1.125rem
+            // 太字
+            font-weight: bold
+            margin-bottom: 30px
+
+        .author
+            // テキストを中央寄せ
+            text-align: center
+            margin-bottom: 60px
+
+            img
+                width: 130px
+                height: 130px
+                // 正円形に整形
+                border-radius: 50%
+                margin-bottom: 30px
+
+            .profile
+                // 14px
+                font-size: 0.875rem
+                // テキストは左寄せ
+                text-align: left
+
+        .ranking
+            // テキストを中央寄せ
+            text-align: center
+            margin-bottom: 60px
+
+            article
+                margin-bottom: 30px
+
+                .article-title
+                    // 14px
+                    font-size: 0.875rem
+                    font-weight: normal
+                    text-align: left
+
+        .archive
+            text-align: center
+            margin-bottom: 60px
+
+            ul
+                @include my-border("bottom")
+
+                li
+                    font-size: 0.875rem
+                    @include my-border("top")
+                    padding: 20px
+                    text-align: left
+
+// ----------------------------------------
+// footer
+// ----------------------------------------
+#footer
+    font-size: 0.875rem
+    background-color: $main-footer-color
+
+    .content
+        display: flex
+        justify-content: space-between
+        padding-top: 50px
+        padding-bottom: 50px
+
+        @include for-smartfone
+            flex-direction: column
+
+        .item
+            width: 30%
+
+            @include for-smartfone
+                width: 100%
+                margin-bottom: 30px
+
+            .footer-title
+                font-size: 1.125rem
+                font-weight: bold
+                margin-bottom: 30px
+
+            ul
+                &.about-list
+                    margin: 20px 0
+
+                    li
+                        margin-bottom: 5px
+
+                    .arrow
+                        position: relative
+                        display: inline-block
+                        padding-left: 12px
+                        color: $main-color
+
+                        // 疑似要素で三角矢印を表示
+                        // border～プロパティで三角を作り、positionで位置調整
+                        &::before
+                            content: ''
+                            width: 0
+                            height: 0
+                            border-style: solid
+                            border-width: 6px 0 6px 8px
+                            border-color: transparent transparent transparent $main-color
+                            position: absolute
+                            top: 50%
+                            left: 0
+                            margin-top: -6px
+
+                &.menu-list
+                    @include my-border("bottom")
+
+                    & > li
+                        @include my-border("top")
+                        padding: 15px
+                        text-align: left
+
+    .copyright
+        font-size: 0.750rem
+        text-align: center
+        padding: 10px 0

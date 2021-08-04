@@ -1,0 +1,114 @@
+doctype 5
+html lang="ja"
+    head
+        meta charset="utf-8"/
+        title Blog
+        meta name="description" content="テキストテキストテキストテキストテキストテキストテキストテキス"/
+        meta name="viewport" content="width=device-width, initial-scale=1"/
+        link rel="shortcut icon" href="img/favicon.ico"/
+        link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/
+        link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/
+        link rel="stylesheet" href="css/style.css"/
+        / javascript:
+        /     alert('Slim supports embedded javascript!');
+
+    body
+        header#header
+            h1.site-title.wrapper
+                a href="#"
+                    img src="./img/logo.svg" alt="Travel Blog"/
+
+            nav#navi
+                ul.wrapper
+                    li
+                        a href="#" NEW
+                    li
+                        a href="#" COLUMN
+                    li
+                        a href="#" SERIES
+                    li
+                        a href="#" Q&amp;A
+                    li
+                        a href="#" CONTACT
+
+        #pickup.wrapper
+            - 3.times do |i|
+                article
+                    img src="./img/pickup#{i+1}.jpg" alt="テキストテキストテキスト"/
+                    h2.article-title タイトルテキストテキストテキストテキストテキストテキストテキスト
+                    .readmore
+                        a href="#" READ MORE
+
+        #container.wrapper
+            main
+                - 3.times do |i|
+                    article
+                        h2.article-title
+                            a href="#" タイトルテキストテキストテキストテキストテキスト
+                        ul.meta
+                            li
+                                a href="#" 2020/01/01
+                            li
+                                a href="#" カテゴリ
+                        a href="#"
+                            img src="./img/main#{i+1}.jpg" alt="テキストテキストテキスト"/
+                        p.text 本文テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                        .readmore
+                            a href="#" READ MORE
+
+            aside#sidebar
+                section.author
+                    img src="./img/author.jpg" alt="テキストテキストテキスト"/
+                    h3.side-title Name Name
+                    p.profile プロフィールテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+
+                section.ranking
+                    h3.side-title Ranking
+                    - 3.times do |i|
+                        article
+                            a href="#"
+                                img src="./img/ranking#{i+1}.jpg" alt="テキストテキストテキスト"/
+                                h4.article-title タイトルテキストテキストテキストテキストテキストテキスト
+
+                section.archive
+                    h3.side-title Archive
+                    ul
+                        - 15.times do |i|
+                            li
+                                a href="#" XXXX年XX月
+                                span
+                                    | (XX)
+
+        footer#footer
+            .content.wrapper
+                section.item
+                    h3.footer-title About
+                    p テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                    ul.about-list
+                        li
+                            a.arrow href="#" プロフィール詳細
+                        li
+                            a.arrow href="#" お仕事の依頼
+                        li
+                            a.arrow href="#" お問い合わせ
+
+                section.item
+                    h3.footer-title Menu 
+                    ul.menu-list
+                        li
+                            a href="#" NEW
+                        li
+                            a href="#" CATEGORY
+                        li
+                            a href="#" COLUMN
+                        li
+                            a href="#" SERIES
+                        li
+                            a href="#" Q&A
+
+                section.item
+                    h3.footer-title Twitter
+                    a.twitter-timeline href="https://twitter.com/TwitterJP?ref_src=twsrc%5Etfw" data-height="315" Tweets by TwitterJP
+                    script async=true src="https://platform.twitter.com/widgets.js"
+
+            p.copyright &copy; Travel &amp; Blog
